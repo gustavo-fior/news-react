@@ -1,10 +1,14 @@
+import { Fragment } from 'react';
 import './App.css';
-import FormularioInicial from "./components/FormularioInicial";
+import FormularioInicial from "./components/Formulario";
+import Noticias from './components/Noticias';
 
 
 function App() {
   return (
-    <FormularioInicial/>
+    <Fragment>
+      <FormularioInicial />
+    </Fragment>
   );
 }
 
