@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@mui/material";
-import Noticias from "../Noticias/Noticias";
 
 function Formulario( { aoEnviar } ) {
   const [palavra, setPalavra] = useState("");

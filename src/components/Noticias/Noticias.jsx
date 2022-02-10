@@ -9,6 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { buscaNoticias } from "../../api/api";
 
+import "../../assets/css/teste.css"
+
 const Noticias = ({ palavra }) => {
   const [noticias, setNoticias] = useState([]);
 
@@ -24,9 +26,10 @@ const Noticias = ({ palavra }) => {
             <Card>
               <CardContent>
                 <Typography>{noticia.jornal}</Typography>
+                <Typography>{noticia.titulo}</Typography>
               </CardContent>
               <CardActions>
-                <a href={noticia.link}>
+                <a className="removeUnderline" href={noticia.link}>
                   <Button size="small">Veja na íntegra!</Button>
                 </a>
               </CardActions>

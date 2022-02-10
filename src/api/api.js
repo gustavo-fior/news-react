@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios";  
 
 export const api =
     axios.create({
@@ -13,17 +13,18 @@ export const auth = async (email, senha) => {
     }
 
     const res = api.post("/auth", body)
-    .then(res => {
-        console.log(res.data);
-    }).catch(err => {
-        console.error(err);
-    });
+        .then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.error(err);
+        });
 
     return res;
-    
-} 
+
+}
 
 export const buscaNoticias = async (palavra, setDado) => {
     const res = await api.get(`/news/${palavra}`);
+    console.log(res.data);
     setDado(res.data);
 }
