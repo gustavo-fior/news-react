@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@mui/material";
+import './estilo.css';
 
 function Formulario( { aoEnviar } ) {
   const [palavra, setPalavra] = useState("");
@@ -21,7 +22,7 @@ function Formulario( { aoEnviar } ) {
         placeholder="Digite a palavra que deseja buscar"
       />
       <Box margin={5} textAlign="center">
-        <Button type="submit" variant="contained">
+        <Button className="sombra" type="submit" variant="contained">
           Buscar
         </Button>
       </Box>

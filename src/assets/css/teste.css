@@ -1,8 +1,11 @@
-.teste {
-    opacity: 0;
-    transition: 1s;
+
+body {
+    display: flex;
+    flex-direction: column;
+    height:100vh; 
+    margin:0; 
 }
 
-.removeUnderline {
-    text-decoration: none;
+.wrap-conteudo {
+    padding-bottom: 2.75rem;
 }
