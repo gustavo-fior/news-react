@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@mui/material";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import './estilo.css';
 
-function Formulario( { aoEnviar } ) {
+function Formulario({ aoEnviar }) {
   const [palavra, setPalavra] = useState("");
 
   return (
@@ -12,6 +13,7 @@ function Formulario( { aoEnviar } ) {
         aoEnviar(palavra);
       }}
     >
+      <SearchOutlinedIcon/>
       <TextField
         onChange={(event) => {
           setPalavra(event.target.value);
@@ -27,7 +29,7 @@ function Formulario( { aoEnviar } ) {
         </Button>
       </Box>
     </form>
-    
+
   );
 }
 
