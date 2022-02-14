@@ -13,7 +13,7 @@ import "../../assets/css/teste.css"
 
 const Noticias = ({ palavra }) => {
   const [noticias, setNoticias] = useState([]);
-  const [textoBotao, setTextoBotao] = useState("");
+  const [textoBotao, setTextoBotao] = useState("Veja na íntegra!");
 
   useEffect(() => {
     buscaNoticias(palavra, setNoticias);
