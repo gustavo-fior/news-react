@@ -9,3 +9,7 @@ body {
 .wrap-conteudo {
     padding-bottom: 2.75rem;
 }
+
+.margem-cima {
+    margin-top: 50px;
+}

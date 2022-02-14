@@ -5,11 +5,10 @@
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     height: 2.75rem;
-    margin-top: 40px;
     min-height: 60px;
     width: 30%;
-    position: absolute;
     bottom: 0;
+    position: absolute;
 }
 
 .footer-link1 {
@@ -26,4 +25,8 @@
 
 .footer-texto {
     color: white;
+}
+
+.margem-cima {
+    margin-top: 20px;
 }

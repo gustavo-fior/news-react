@@ -5,7 +5,7 @@ import './estilo.css';
 const Footer = () => {
     return (
         <Box display="flex" alignItems="center"
-        justifyContent="center">
+        justifyContent="center" className='margem-cima'>
             <footer className='footer'>
                 <Link className='footer-link1' href='https://github.com'>
                     <p className='footer-texto'>GitHub</p>
