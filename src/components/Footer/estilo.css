@@ -1,7 +1,6 @@
 .footer {
     background-color: #1769aa;
     border-radius: 360px 360px 0px 0px;
-    /*box-shadow: 0px 0px 0px 10px #55a6ff38;*/
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
