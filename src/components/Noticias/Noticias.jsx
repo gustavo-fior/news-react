@@ -13,9 +13,14 @@ import "../../assets/css/teste.css"
 
 const Noticias = ({ palavra }) => {
   const [noticias, setNoticias] = useState([]);
+  const [textoBotao, setTextoBotao] = useState("");
 
   useEffect(() => {
     buscaNoticias(palavra, setNoticias);
+
+    if(noticias.length > 0 && noticias[0].link === "mailto:gustavo_fior@outlook.com") {
+      setTextoBotao("Contato");
+    }
   }, [palavra]);
 
   return (
@@ -25,12 +30,12 @@ const Noticias = ({ palavra }) => {
           <Box key={index} m={2}>
             <Card>
               <CardContent>
-                <Typography>{noticia.jornal}</Typography>
+                <Typography sx={{ fontWeight: 'bold' }}>{noticia.jornal}</Typography>
                 <Typography>{noticia.titulo}</Typography>
               </CardContent>
               <CardActions>
                 <a className="removeUnderline" href={noticia.link}>
-                  <Button size="small">Veja na íntegra!</Button>
+                  <Button size="small">{textoBotao}</Button>
                 </a>
               </CardActions>
             </Card>

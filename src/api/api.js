@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const api =
     axios.create({
-        baseURL: "https://brazil-news.herokuapp.com"
+        baseURL: "http://localhost:8080"
     });
 
 export const auth = async (email, senha) => {
@@ -25,6 +25,5 @@ export const auth = async (email, senha) => {
 
 export const buscaNoticias = async (palavra, setDado) => {
     const res = await api.get(`/news/${palavra}`);
-    console.log(res.data);
     setDado(res.data);
 }
