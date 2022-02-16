@@ -1,13 +1,10 @@
 import { Container, Typography, Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import Formulario from "../components/Formulario/Formulario";
-import Noticias from "../components/Noticias/Noticias";
 import Footer from "../components/Footer";
 import "../assets/css/teste.css"
 
 function FormularioIncial() {
-
-  const [palavra, setPalavra] = useState("");
 
   return (
     <Box
@@ -23,8 +20,7 @@ function FormularioIncial() {
           Brazil News
         </Typography>
         <div className="wrap-conteudo">
-          <Formulario id="form" aoEnviar={setPalavra} />
-          <Noticias id="noticias" palavra={palavra} />
+          <Formulario id="form" />
         </div>
         <Footer />
       </Container>

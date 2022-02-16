@@ -7,21 +7,17 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { buscaNoticias } from "../../api/api";
 
-import "../../assets/css/teste.css"
+import "../../assets/css/teste.css";
 
-const Noticias = ({ palavra }) => {
-  const [noticias, setNoticias] = useState([]);
+const Noticias = ({ noticias }) => {
   const [textoBotao, setTextoBotao] = useState("Veja na íntegra!");
 
   useEffect(() => {
-    buscaNoticias(palavra, setNoticias);
-
-    if(noticias.length > 0 && noticias[0].link === "mailto:gustavo_fior@outlook.com") {
+    if (noticias.length > 0 && noticias[0].link === "mailto:gustavo_fior@outlook.com" ) {
       setTextoBotao("Contato");
     }
-  }, [palavra]);
+  }, [noticias]);
 
   return (
     <>
@@ -30,7 +26,9 @@ const Noticias = ({ palavra }) => {
           <Box key={index} m={2}>
             <Card>
               <CardContent>
-                <Typography sx={{ fontWeight: 'bold' }}>{noticia.jornal}</Typography>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  {noticia.jornal}
+                </Typography>
                 <Typography>{noticia.titulo}</Typography>
               </CardContent>
               <CardActions>
