@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Box, Button, IconButton } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { buscaNoticias } from "../../api/api";
+import { auth, buscaNoticias } from "../../api/api";
 import Noticias from "../Noticias/Noticias";
 import "./estilo.css";
 
 function Formulario() {
   const [palavra, setPalavra] = useState("");
   const [noticias, setNoticias] = useState([]);
+
+  useEffect(() => {
+    auth("joao@email.com", "123");
+  }, []);
 
   return (
     <>

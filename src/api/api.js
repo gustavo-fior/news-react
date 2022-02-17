@@ -1,8 +1,13 @@
-import axios from "axios";  
+import axios from "axios";
+
+const getTokenFromSessionStorage=()=>{
+    return sessionStorage.getItem("token");
+}
 
 export const api =
     axios.create({
-        baseURL: "https://brazil-news.herokuapp.com"
+        baseURL: "http://localhost:8080"
+        
     });
 
 export const auth = async (email, senha) => {
@@ -12,18 +17,18 @@ export const auth = async (email, senha) => {
         senha: senha
     }
 
-    const res = api.post("/auth", body)
+    await api.post("/auth", body)
         .then(res => {
-            console.log(res.data);
+            sessionStorage.setItem("token", res.data.token);
         }).catch(err => {
             console.error(err);
         });
-
-    return res;
-
 }
 
 export const buscaNoticias = async (palavra, setDado) => {
-    const res = await api.get(`/news/${palavra}`);
+
+    const res = await api.get(`/news/${palavra}`,{headers:{
+        "Authorization": "Bearer " + getTokenFromSessionStorage()
+    }});
     setDado(res.data);
 }
