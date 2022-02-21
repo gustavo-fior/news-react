@@ -1,50 +1,58 @@
 import axios from "axios";
 
 const getTokenFromSessionStorage = () => {
-    return sessionStorage.getItem("token");
-}
+  return sessionStorage.getItem("token");
+};
 
-export const api =
-    axios.create({
-        baseURL: "https://brazil-news.herokuapp.com"
-
-    });
+export const api = axios.create({
+  baseURL: "https://brazil-news.herokuapp.com",
+});
 
 export const auth = async (email, senha) => {
+  const body = {
+    email: email,
+    senha: senha,
+  };
 
-    const body = {
-        email: email,
-        senha: senha
-    }
-
-    await api.post("/auth", body)
-        .then(res => {
-            sessionStorage.setItem("token", res.data.token);
-        }).catch(err => {
-            console.error(err);
-        });
-}
-
-export const buscaNoticias = async (palavra, setDado) => {
-
-    const res = await api.get(`/news/${palavra}`, {
-        headers: {
-            "Authorization": "Bearer " + getTokenFromSessionStorage()
-        }
+  await api
+    .post("/auth", body)
+    .then((res) => {
+      sessionStorage.setItem("token", res.data.token);
+    })
+    .catch((err) => {
+      console.error(err);
     });
-    setDado(res.data);
-}
+};
 
-export const buscaNoticiasComJornal = async (palavra, jornal, setDado) => {
-    const res = await api.get(`/news/${jornal}/${palavra}`, {
-        headers: {
-            "Authorization": "Bearer " + getTokenFromSessionStorage()
-        }
+export const buscaNoticias = async (palavra, setDado, jornal) => {
+  let res = "";
+  if (jornal === "none") {
+    res = await api.get(`/news/${palavra}`, {
+      headers: {
+        Authorization: "Bearer " + getTokenFromSessionStorage(),
+      },
     });
-    setDado(res.data);
-}
+  } else {
+    res = await api.get(`/news/${jornal}/${palavra}`, {
+      headers: {
+        Authorization: "Bearer " + getTokenFromSessionStorage(),
+      },
+    });
+  }
+
+  setDado(res.data);
+};
 
 export const buscaJornais = async (setDado) => {
-    const res = await api.get(`/newspaper`);
-    setDado(res.data)
-}
+  const res = await api.get(`/newspaper`);
+  setDado(res.data);
+};
+
+export const buscaTrends = async (setDado) => {
+  const res = await api.get(`/trends`, {
+    headers: {
+      Authorization: "Bearer " + getTokenFromSessionStorage(),
+    },
+  });
+  setDado(res.data);
+};

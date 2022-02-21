@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { TextField, Box, Button, IconButton, Select, MenuItem, InputLabel, FormControl, FormHelperText, Grid } from "@mui/material";
+import {
+  TextField,
+  Box,
+  Button,
+  IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  FormHelperText,
+  Grid,
+  Link,
+} from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { auth, buscaJornais, buscaNoticias, buscaNoticiasComJornal } from "../../api/api";
+import { auth, buscaJornais, buscaNoticias } from "../../api/api";
 import Noticias from "../Noticias/Noticias";
 import "./estilo.css";
 
@@ -9,7 +20,7 @@ function Formulario() {
   const [palavra, setPalavra] = useState("");
   const [noticias, setNoticias] = useState([]);
   const [jornais, setJornais] = useState([]);
-  const [jornal, setJornal] = useState("");
+  const [jornal, setJornal] = useState("none");
   const [jornalSelecionado, setJornalSelecionado] = useState(false);
 
   useEffect(() => {
@@ -24,18 +35,14 @@ function Formulario() {
     } else {
       setJornalSelecionado(true);
     }
-  }
+  };
 
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (jornalSelecionado) {
-            buscaNoticiasComJornal(palavra, jornal, setNoticias);
-          } else {
-            buscaNoticias(palavra, setNoticias);
-          }
+          buscaNoticias(palavra, setNoticias, jornal);
         }}
       >
         <Grid container spacing={2}>
@@ -58,10 +65,9 @@ function Formulario() {
             />
           </Grid>
           <Grid item xs={2}>
-            <FormControl sx={{marginTop: 1}}>
-              <InputLabel id="select-label">Jornal</InputLabel>
-              <Select variant="standard"
-                labelId="label-jornais"
+            <FormControl sx={{ marginTop: 3 }}>
+              <Select
+                variant="standard"
                 value={jornal}
                 label="Jornal"
                 onChange={handleSelectChange}
@@ -70,16 +76,25 @@ function Formulario() {
                   <em>Todos</em>
                 </MenuItem>
                 {jornais.map((jornal, index) => (
-                  <MenuItem label="Escolha o jornal" key={index} value={jornal.nome}>{jornal.nome}</MenuItem>
+                  <MenuItem
+                    label="Escolha o jornal"
+                    key={index}
+                    value={jornal.nome}
+                  >
+                    {jornal.nome}
+                  </MenuItem>
                 ))}
               </Select>
               <FormHelperText>Se preferir, filtre por um jornal</FormHelperText>
             </FormControl>
           </Grid>
         </Grid>
-        <Box margin={5} textAlign="center">
-          <Button type="submit" variant="contained">
+        <Box margin={3} textAlign="center">
+          <Button sx={{marginRight: 1}} type="submit" variant="contained">
             Buscar
+          </Button>
+          <Button sx={{marginLeft: 1}} variant="contained">
+            <Link color="white" underline="none" href="/trending">Trends</Link>
           </Button>
         </Box>
       </form>

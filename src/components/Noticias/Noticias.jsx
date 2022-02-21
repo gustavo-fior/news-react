@@ -4,6 +4,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Link,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -32,9 +33,9 @@ const Noticias = ({ noticias }) => {
                 <Typography>{noticia.titulo}</Typography>
               </CardContent>
               <CardActions sx={{marginLeft: 0.5}}>
-                  <a className="removeUnderline" href={noticia.link}>
+                  <Link underline="hover" href={noticia.link}>
                     <Button size="small">{textoBotao}</Button>
-                  </a>
+                  </Link>
               </CardActions>
             </Card>
           </Box>
