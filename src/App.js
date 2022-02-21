@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<FormularioInicial/>}/>
         <Route exact path='/trending' element={<Trending/>}/>
+        <Route exact path='/trending/:trend' element={<TrendingNews/>}/>
       </Routes>
     </Router>
   );
