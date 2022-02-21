@@ -14,7 +14,7 @@ const Noticias = ({ noticias }) => {
   const [textoBotao, setTextoBotao] = useState("Veja na íntegra!");
 
   useEffect(() => {
-    if (noticias.length > 0 && noticias[0].link === "mailto:gustavo_fior@outlook.com" ) {
+    if (noticias.length > 0 && noticias[0].link === "mailto:gustavo_fior@outlook.com") {
       setTextoBotao("Contato");
     }
   }, [noticias]);
@@ -24,17 +24,17 @@ const Noticias = ({ noticias }) => {
       {noticias.map((noticia, index) => {
         return (
           <Box key={index} m={2}>
-            <Card>
+            <Card raised>
               <CardContent>
                 <Typography sx={{ fontWeight: "bold" }}>
                   {noticia.jornal}
                 </Typography>
                 <Typography>{noticia.titulo}</Typography>
               </CardContent>
-              <CardActions>
-                <a className="removeUnderline" href={noticia.link}>
-                  <Button size="small">{textoBotao}</Button>
-                </a>
+              <CardActions sx={{marginLeft: 0.5}}>
+                  <a className="removeUnderline" href={noticia.link}>
+                    <Button size="small">{textoBotao}</Button>
+                  </a>
               </CardActions>
             </Card>
           </Box>

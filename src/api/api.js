@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const getTokenFromSessionStorage=()=>{
+const getTokenFromSessionStorage = () => {
     return sessionStorage.getItem("token");
 }
 
 export const api =
     axios.create({
         baseURL: "https://brazil-news.herokuapp.com"
-        
+
     });
 
 export const auth = async (email, senha) => {
@@ -27,8 +27,24 @@ export const auth = async (email, senha) => {
 
 export const buscaNoticias = async (palavra, setDado) => {
 
-    const res = await api.get(`/news/${palavra}`,{headers:{
-        "Authorization": "Bearer " + getTokenFromSessionStorage()
-    }});
+    const res = await api.get(`/news/${palavra}`, {
+        headers: {
+            "Authorization": "Bearer " + getTokenFromSessionStorage()
+        }
+    });
     setDado(res.data);
+}
+
+export const buscaNoticiasComJornal = async (palavra, jornal, setDado) => {
+    const res = await api.get(`/news/${jornal}/${palavra}`, {
+        headers: {
+            "Authorization": "Bearer " + getTokenFromSessionStorage()
+        }
+    });
+    setDado(res.data);
+}
+
+export const buscaJornais = async (setDado) => {
+    const res = await api.get(`/newspaper`);
+    setDado(res.data)
 }
