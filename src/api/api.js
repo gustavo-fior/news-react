@@ -11,7 +11,7 @@ const header = {
 }
 
 export const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://brazil-news.herokuapp.com",
 });
 
 export const auth = async (email, senha) => {
@@ -46,13 +46,13 @@ export const buscaJornais = async (setDado) => {
   setDado(res.data);
 };
 
-export const buscaTrends = async (setDado, trendLink) => {
+export const buscaTrends = async (setDado, trendLink, setDado2) => {
 
   let res = [];
 
   if (trendLink) {
     res = await api.get(`/trends/${trendLink}`, header)
-    console.log(res.data)
+    setDado2(res.data.noticias);
   } else {
     res = await api.get(`/trends`, header);
   }

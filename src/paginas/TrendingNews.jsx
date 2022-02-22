@@ -2,17 +2,17 @@ import { Card, CardActionArea, CardContent, CardMedia, Container, Typography } f
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { buscaTrends } from '../api/api';
-import Footer from '../components/Footer';
 import Noticias from '../components/Noticias/Noticias';
 
 const TrendingNews = () => {
 
     const [trend, setTrend] = useState([]);
+    const [noticias, setNoticias] = useState([]);
     const { trendTitle } = useParams();
 
     useEffect(() => {
-        buscaTrends(setTrend, trendTitle);
-    }, [trendTitle]);
+        buscaTrends(setTrend, trendTitle, setNoticias);
+    }, [trendTitle]); 
 
     return (
         <>
@@ -36,7 +36,7 @@ const TrendingNews = () => {
                     </CardActionArea>
                 </Card>
                 <Container maxWidth="md" >
-                    <Noticias noticias={trend.noticias} />
+                    <Noticias noticias={noticias} />
                 </Container>
             </Container>
         </>
