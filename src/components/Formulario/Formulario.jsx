@@ -42,7 +42,7 @@ function Formulario() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          buscaNoticias(palavra.toLocaleLowerCase, setNoticias, jornal);
+          buscaNoticias(palavra.toLocaleLowerCase(), setNoticias, jornal);
         }}
       >
         <Grid container spacing={2}>
