@@ -7,7 +7,6 @@ import {
   CardMedia,
   Container,
   Grid,
-  Link,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -22,17 +21,20 @@ const Trending = () => {
   }, []);
 
   return (
-    <Container sx={{ marginTop: 5 }}>
+    <Container maxWidth="md" sx={{ marginTop: 5 }}>
+      <Typography margin={3} id="titulo" align="center" variant="h3" component="h1">
+        Brazil News Trending
+      </Typography>
       <Grid textAlign="center" container spacing={5}>
-        {trending.map((index, trend) => (
-          <Grid key={index} textAlign="center" item xs={6}>
-            <Card>
+        {trending.map((trend, index) => (
+          <Grid key={index} textAlign="center" item xs={4}>
+            <Card raised>
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="160"
+                  height="120"
                   image={trend.image}
-                  alt="green iguana"
+                  alt={trend.titulo}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
@@ -44,10 +46,8 @@ const Trending = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  <Link underline="hover" href={trend.link}>
-                    Veja as notícias...
-                  </Link>
+                <Button sx={{ marginLeft: 6 }} href={"/trending/" + trend.link} size="small" variant="contained" color="primary">
+                  Veja as notícias
                 </Button>
               </CardActions>
             </Card>

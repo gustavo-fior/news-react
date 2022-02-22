@@ -4,18 +4,23 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import './App.css';
 import Trending from "./paginas/Trending";
+import TrendingNews from "./paginas/TrendingNews";
+import Footer from "./components/Footer";
+
+import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/' element={<FormularioInicial/>}/>
-        <Route exact path='/trending' element={<Trending/>}/>
-        <Route exact path='/trending/:trend' element={<TrendingNews/>}/>
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<FormularioInicial />} />
+          <Route exact path='/trending' element={<Trending />} />
+          <Route exact path='/trending/:trendTitle' element={<TrendingNews />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
