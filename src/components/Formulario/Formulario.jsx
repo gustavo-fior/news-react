@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   TextField,
+  Card,
   Box,
   Button,
   IconButton,
@@ -10,11 +11,13 @@ import {
   FormHelperText,
   Grid,
   Link,
+  Skeleton
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { auth, buscaJornais, buscaNoticias } from "../../api/api";
 import Noticias from "../Noticias/Noticias";
 import "./estilo.css";
+import NoticiasLoading from "../NoticiasLoading/NoticiasLoading";
 
 function Formulario() {
   const [palavra, setPalavra] = useState("");
@@ -22,10 +25,14 @@ function Formulario() {
   const [jornais, setJornais] = useState([]);
   const [jornal, setJornal] = useState("none");
   const [jornalSelecionado, setJornalSelecionado] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     auth("joao@email.com", "123");
     buscaJornais(setJornais);
+    if (loading) {
+      setLoading(false);
+    }
   }, [noticias, jornalSelecionado]);
 
   const handleSelectChange = (e) => {
@@ -42,6 +49,7 @@ function Formulario() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          setLoading(true);
           buscaNoticias(palavra, setNoticias, jornal);
         }}
       >
@@ -90,15 +98,15 @@ function Formulario() {
           </Grid>
         </Grid>
         <Box margin={3} textAlign="center">
-          <Button sx={{marginRight: 1}} type="submit" variant="contained">
+          <Button sx={{ marginRight: 1 }} type="submit" variant="contained">
             Buscar
           </Button>
-          <Button sx={{marginLeft: 1}} variant="contained">
+          <Button sx={{ marginLeft: 1 }} variant="contained">
             <Link color="white" underline="none" href="/trending">Trends</Link>
           </Button>
         </Box>
       </form>
-      <Noticias noticias={noticias} />
+      {loading ? (<NoticiasLoading />) : (<Noticias noticias={noticias} />)}
     </>
   );
 }
