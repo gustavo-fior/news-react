@@ -1,10 +1,4 @@
 import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
   Container,
   Grid,
   Typography,
@@ -12,12 +6,15 @@ import {
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { buscaTrends } from "../api/api";
+import TrendingCardLoading from "../components/TrendindCardLoading/TrendingCardLoading";
+import TrendingCard from "../components/TrendingCard/TrendingCard";
 
 const Trending = () => {
   const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    buscaTrends(setTrending);
+    buscaTrends(setTrending).then(() => { setLoading(false) });
   }, []);
 
   return (
@@ -26,33 +23,7 @@ const Trending = () => {
         Brazil News Trending
       </Typography>
       <Grid textAlign="center" container spacing={5}>
-        {trending.map((trend, index) => (
-          <Grid key={index} textAlign="center" item xs={4}>
-            <Card raised>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="120"
-                  image={trend.image}
-                  alt={trend.titulo}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {trend.titulo}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {trend.descricao}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button sx={{ marginLeft: 6 }} href={"/trending/" + trend.link} size="small" variant="contained" color="primary">
-                  Veja as notícias
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+        {loading ? (<TrendingCardLoading />) : (<TrendingCard trends={trending} />)}
       </Grid>
     </Container>
   );

@@ -46,12 +46,13 @@ export const buscaJornais = async (setDado) => {
   setDado(res.data);
 };
 
-export const buscaTrends = async (setDado, trendLink) => {
+export const buscaTrends = async (setDado, trendLink, setDado2) => {
 
   let res = [];
 
   if (trendLink) {
     res = await api.get(`/trends/${trendLink}`, header);
+    setDado2(res.data.noticias);
   } else {
     res = await api.get(`/trends`, header);
   }

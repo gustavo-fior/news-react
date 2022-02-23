@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   TextField,
-  Card,
   Box,
   Button,
   IconButton,
@@ -10,8 +9,7 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  Link,
-  Skeleton
+  Link
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { auth, buscaJornais, buscaNoticias } from "../../api/api";
@@ -50,7 +48,7 @@ function Formulario() {
         onSubmit={(event) => {
           event.preventDefault();
           setLoading(true);
-          buscaNoticias(palavra, setNoticias, jornal);
+          buscaNoticias(palavra.toLocaleLowerCase(), setNoticias, jornal);
         }}
       >
         <Grid container spacing={2}>

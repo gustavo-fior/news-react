@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Trending from "./paginas/Trending";
 import TrendingNews from "./paginas/TrendingNews";
-import Footer from "./components/Footer";
 
 import './App.css';
 
