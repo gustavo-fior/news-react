@@ -25,7 +25,7 @@ const Trending = () => {
       <Typography margin={3} id="descricao" align="center" variant="h5" component="h2">
         Aqui você encontra os assuntos mais buscados nos jornais brasileiros.
       </Typography>
-      <Grid textAlign="center" container spacing={5}>
+      <Grid textAlign="center" container spacing={5} justifyContent={"center"}>
         {loading ? (<TrendingCardLoading />) : (<TrendingCard trends={trending} />)}
       </Grid>
     </Container>

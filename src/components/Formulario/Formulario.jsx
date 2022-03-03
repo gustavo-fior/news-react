@@ -9,7 +9,7 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  Link
+  Link,
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { auth, buscaJornais, buscaNoticias } from "../../api/api";
@@ -44,15 +44,15 @@ function Formulario() {
 
   return (
     <>
-      <form
+      <form  
         onSubmit={(event) => {
           event.preventDefault();
           setLoading(true);
           buscaNoticias(palavra.toLocaleLowerCase(), setNoticias, jornal);
         }}
       >
-        <Grid container spacing={2}>
-          <Grid item xs={10}>
+        <Grid  container spacing={2}>
+          <Grid item xs={8} md={10}>
             <TextField
               onChange={(event) => {
                 setPalavra(event.target.value);
@@ -70,8 +70,8 @@ function Formulario() {
               }}
             />
           </Grid>
-          <Grid item xs={2}>
-            <FormControl sx={{ marginTop: 3 }}>
+          <Grid item xs={4} md={2}>
+            <FormControl className="removeGridNoMobile" sx={{ marginTop: 3 }}>
               <Select
                 variant="standard"
                 value={jornal}
@@ -100,11 +100,13 @@ function Formulario() {
             Buscar
           </Button>
           <Button sx={{ marginLeft: 1 }} variant="contained">
-            <Link color="white" underline="none" href="/trending">Trends</Link>
+            <Link color="white" underline="none" href="/trending">
+              Trends
+            </Link>
           </Button>
         </Box>
       </form>
-      {loading ? (<NoticiasLoading />) : (<Noticias noticias={noticias} />)}
+      {loading ? <NoticiasLoading /> : <Noticias noticias={noticias} />}
     </>
   );
 }
