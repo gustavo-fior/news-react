@@ -11,7 +11,7 @@ const header = {
 }
 
 export const api = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://brazil-news.herokuapp.com",
 });
 
 export const auth = async(email, senha) => {
