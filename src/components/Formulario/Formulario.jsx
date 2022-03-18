@@ -10,6 +10,7 @@ import {
   FormHelperText,
   Grid,
   Link,
+  LinearProgress,
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { auth, buscaJornais, buscaNoticias } from "../../api/api";
@@ -23,10 +24,13 @@ function Formulario() {
   const [jornais, setJornais] = useState([]);
   const [jornal, setJornal] = useState("none");
   const [jornalSelecionado, setJornalSelecionado] = useState(false);
+  const [loadingInicial, setLoadingInicial] = useState(true);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    auth("joao@email.com", "123");
+    auth("joao@email.com", "123").then(() => {
+      setLoadingInicial(false);
+    });
     buscaJornais(setJornais);
     if (loading) {
       setLoading(false);
@@ -42,16 +46,18 @@ function Formulario() {
     }
   };
 
-  return (
+  return loadingInicial ? (
+    <LinearProgress />
+  ) : (
     <>
-      <form  
+      <form
         onSubmit={(event) => {
           event.preventDefault();
           setLoading(true);
           buscaNoticias(palavra.toLocaleLowerCase(), setNoticias, jornal);
         }}
       >
-        <Grid  container spacing={2}>
+        <Grid container spacing={2}>
           <Grid item xs={8} md={10}>
             <TextField
               onChange={(event) => {
