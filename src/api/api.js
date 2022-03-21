@@ -4,7 +4,7 @@ const getTokenFromSessionStorage = () => {
     return sessionStorage.getItem("token");
 };
 
-const header = {
+let header = {
     headers: {
         Authorization: "Bearer " + getTokenFromSessionStorage(),
     },
@@ -14,7 +14,7 @@ export const api = axios.create({
     baseURL: "https://brazil-news.herokuapp.com",
 });
 
-export const auth = async(email, senha) => {
+export const auth = async (email, senha) => {
     const body = {
         email: email,
         senha: senha,
@@ -24,15 +24,22 @@ export const auth = async(email, senha) => {
         .post("/auth", body)
         .then((res) => {
             sessionStorage.setItem("token", res.data.token);
+            header = {
+                headers: {
+                    Authorization: "Bearer " + res.data.token
+                }
+            }
         })
         .catch((err) => {
             console.error(err);
         });
 };
 
-export const buscaNoticias = async(palavra, setDado, jornal) => {
+export const buscaNoticias = async (palavra, setDado, jornal) => {
     let res = [];
+
     if (jornal === "none") {
+        console.log(header.headers.Authorization)
         res = await api.get(`/news/${palavra}`, header);
     } else {
         res = await api.get(`/news/${jornal}/${palavra}`, header);
@@ -41,12 +48,12 @@ export const buscaNoticias = async(palavra, setDado, jornal) => {
     setDado(res.data);
 };
 
-export const buscaJornais = async(setDado) => {
+export const buscaJornais = async (setDado) => {
     const res = await api.get(`/newspaper`);
     setDado(res.data);
 };
 
-export const buscaTrends = async(setDado, trendLink, setDado2) => {
+export const buscaTrends = async (setDado, trendLink, setDado2) => {
 
     let res = [];
 
