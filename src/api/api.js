@@ -39,7 +39,7 @@ export const buscaNoticias = async (palavra, setDado, jornal) => {
     let res = [];
 
     if (jornal === "none") {
-        console.log(header.headers.Authorization)
+        
         res = await api.get(`/news/${palavra}`, header);
     } else {
         res = await api.get(`/news/${jornal}/${palavra}`, header);
