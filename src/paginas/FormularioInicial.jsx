@@ -16,7 +16,7 @@ function FormularioIncial() {
       position='relative'
     >
       <Container className="margem-cima" maxWidth="md">
-        <Typography id="titulo" align="center" variant="h3" component="h1">
+        <Typography sx={{fontWeight: 400, letterSpacing: 4}} id="titulo" align="center" variant="h2" component="h1" >
           Brazil News
         </Typography>
         <div className="wrap-conteudo">
