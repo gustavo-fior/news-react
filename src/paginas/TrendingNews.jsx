@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { buscaTrends } from '../api/api';
 import Noticias from '../components/Noticias/Noticias';
 import NoticiasLoading from '../components/NoticiasLoading/NoticiasLoading'
+import "../assets/css/teste.css"
 
 const TrendingNews = () => {
 
@@ -18,12 +19,12 @@ const TrendingNews = () => {
 
     return (
         <>
-            <Container sx={{ marginTop: 5 }}>
+            <Container className="container-main" sx={{ marginTop: 5 }}>
                 <Card raised>
                     <CardActionArea>
                         <CardMedia
                             component="img"
-                            height="320"
+                            height="420"
                             image={trend.image}
                             alt={trend.titulo}
                         />

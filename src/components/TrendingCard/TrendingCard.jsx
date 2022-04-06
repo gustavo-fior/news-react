@@ -14,12 +14,12 @@ const TrendingCard = ({ trends }) => {
   return (
     <>
       {trends.map((trend, index) => (
-        <Grid key={index} textAlign="center" item sx={12} md={4}>
+        <Grid sx={{marginBottom: 2}} key={index} textAlign="center" item xs={12} md={4}>
           <Card raised>
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="120"
+                height="150"
                 image={trend.image}
                 alt={trend.titulo}
               />

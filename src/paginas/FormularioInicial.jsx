@@ -12,11 +12,10 @@ function FormularioIncial() {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
-      margin={0}
       position='relative'
     >
-      <Container className="margem-cima" maxWidth="md">
-        <Typography sx={{fontWeight: 400, letterSpacing: 4}} id="titulo" align="center" variant="h2" component="h1" >
+      <Container className="container-main" maxWidth="md">
+        <Typography sx={{fontWeight: 400}} id="titulo" align="center" variant="h2" component="h1" >
           Brazil News
         </Typography>
         <div className="wrap-conteudo">

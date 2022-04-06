@@ -3,6 +3,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import "../assets/css/teste.css"
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { buscaTrends } from "../api/api";
@@ -18,14 +19,14 @@ const Trending = () => {
   }, []);
 
   return (
-    <Container maxWidth="md" sx={{ marginTop: 5 }}>
+    <Container className="container-main" maxWidth="md" sx={{ marginTop: 20 }}>
       <Typography margin={3} id="titulo" align="center" variant="h3" component="h1">
         Brazil News Trending
       </Typography>
       <Typography margin={3} id="descricao" align="center" variant="h5" component="h2">
         Aqui você encontra os assuntos mais buscados nos jornais brasileiros.
       </Typography>
-      <Grid textAlign="center" container spacing={5} justifyContent={"center"}>
+      <Grid textAlign="center" container spacing={3} justifyContent={"center"}>
         {loading ? (<TrendingCardLoading />) : (<TrendingCard trends={trending} />)}
       </Grid>
     </Container>

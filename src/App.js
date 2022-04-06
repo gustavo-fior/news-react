@@ -28,9 +28,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            <Route exact path='/' element={<FormularioInicial />} />
-            <Route exact path='/trending' element={<Trending />} />
-            <Route exact path='/trending/:trendTitle' element={<TrendingNews />} />
+              <Route exact path='/' element={<FormularioInicial />} />
+              <Route exact path='/trending' element={<Trending />} />
+              <Route exact path='/trending/:trendTitle' element={<TrendingNews />} />
           </Routes>
         </Router>
       </ThemeProvider>
